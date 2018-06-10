@@ -12,6 +12,11 @@ namespace ConsoleApp.SQLite
         {
             optionsBuilder.UseSqlite("Data Source=blogging.db");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        {
+            modelBuilder.Entity<AuditEntry>();
+        }
     }
 
     public class Blog
@@ -30,5 +35,12 @@ namespace ConsoleApp.SQLite
 
         public int BlogId { get; set; }
         public Blog Blog { get; set; }
+    }
+
+    public class AuditEntry
+    {
+        public int AuditEntryId { get; set; }
+        public string Username { get; set; }
+        public string Action { get; set; }
     }
 }
